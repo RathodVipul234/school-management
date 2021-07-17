@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block 'table' %}
+
+<div class="table">
+    <form>
+        <div class="input-group">
+            <div class="form col-7">
+            </div>
+            <div class="form-outline col-4">
+                <input type="search" placeholder="search" name="search" id="form1"
+                       class="form-control"/>
+            </div>
+            <button type="submit" id="btn" value="search" class="btn btn-primary col-1">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </form>
+    <br>
+
+    <center><h1>Teacher List</h1></center>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">index</th>
+            <th>name</th>
+            <th>teacher id</th>
+            <th>joined date</th>
+            <th>edit</th>
+            <th>delete</th>
+        </tr>
+        </thead>
+        {% if data_not_found %}
+        <h1>{{data_not_found}}</h1>
+        {% endif %}
+        {% for i in page_obj %}
+        <tbody>
+        <tr>
+            <td scope="row">{{forloop.counter}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.teacher_id}}</td>
+            <td>{{i.joining_date}}</td>
+            <td>
+                <a href="{% url 'teacher_update' i.id %}">
+                    <i class='fas fa-edit' style='font-size:24px'></i>
+                </a>
+            </td>
+            <td>
+                <a href="{% url 'delete_teacher' i.id %}">
+                    <i class='fas fa-trash' style='font-size:24px'></i>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+
+        {% endfor %}
+    </table>
+    <center>
+        {% if page_obj.has_previous %}
+        <a class="previous" href="?page={{ data.previous_page_number }}">&laquo;Previous</a>
+        {% endif %}
+        <span>
+            {% for i in page_obj.paginator.page_range %}
+                {% if i == page_obj.number %}
+                    <button><a href="?index={{i}}">{{i}}</a></button>
+
+                {% else %}
+                    {% if i <= 3 %}
+                        <span><a href="?page={{ i }}">{{ i }}</a></span>
+                    {% endif %}
+                {% if i > 3 %}
+                    <span>...</span>
+                    {% endif %}
+                {% endif %}
+
+            {% endfor %}
+        </span>
+
+        {% if page_obj.has_next %}
+        <a class="next" href="?page={{ page_obj.next_page_number }}">&raquo;next</a>
+        {% endif %}
+    </center>
+</div>
+{% endblock %}
+

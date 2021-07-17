@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Base</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+    <link rel="stylesheet" href='{% static "css/style.css" %}'>
+</head>
+<body>
+
+
+<div class="wrapper">
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h5><b><i>School Management</i></b></h5>
+        </div>
+        <ul class="lisst-unstyled components">
+            <li>
+                <a href="#accountmenu"  data-toggle="collapse" aria-hidden="false" class="dropdown-toggle">
+                    {% if user.is_authenticated %}
+                        {{ user.username }}
+                    {% else %}
+                    Account
+                    {% endif %}
+
+                </a>
+                <ul class="collapse list-unstyled" id="accountmenu">
+                    {% if user.is_authenticated %}
+                    <li>
+                        <a href="{% url 'logout' %}">logout</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="{% url 'signin' %}">sign in</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'signup' %}">sign up</a>
+                    </li>
+                    {% endif %}
+
+                </ul>
+
+            </li>
+            <li>
+                <a href="#stdentmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Students</a>
+                <ul class="collapse list-unstyled" id="stdentmenu">
+                    <li>
+                        <a href="{% url 'student_list' %}">Student List</a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'student_registration' %}">Student registration</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#teachermenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Teachers</a>
+                <ul class="collapse list-unstyled" id="teachermenu">
+                    <li>
+                        <a href="{% url 'teacher_list' %}">Teacher List</a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'teacher_registration' %}">Teacher registration</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="{% url 'aboutUs' %}">About</a>
+            </li>
+            <li>
+                <a href="{% url 'policy' %}">Policy</a>
+            </li>
+            <li>
+                <a href="{% url 'contactUs' %}">Contact Us</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div id="content">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <button type="button" id="sidebarCollapse" class="btn  btn-info">
+                    <i class="fas fa-align-left"></i>
+                </button>
+            </div>
+        </nav>
+        <!-- Success msg -->
+
+        {% if messages %}
+        {% for message in messages%}
+        <div id="message" class="container">
+            <div class="alert alert-{{ message.tags }} alert-dismissible text-center" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span>
+                </button>
+                <strong>
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                        {% else %}
+                    {{ title }}
+                    {% endif %}
+                </strong>
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% block 'table' %}
+
+            {% endblock %}
+
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+<script>
+
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block 'table' %}
+
+<center><h1>Teacher Update</h1></center>
+
+<form method="POST" enctype=multipart/form-data>
+    {% csrf_token %}
+    {{ data.as_p }}
+    <center>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </center>
+</form>
+
+{% endblock %}
