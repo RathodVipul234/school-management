@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block 'table' %}
+
+<form class="questions-form" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <p>
+        <label for="questions_id">questions_id</label>
+        <input type="number" readonly="true" value="{{obj.0}}" id="questions_id" name="question_id" class="form-control">
+    </p>
+
+    {% for i in files_questions %}
+    <input type="hidden" name="counterFiles" value="{{forloop.counter}}">
+    <p>
+        Currently:
+        <a name="currently-file-{{forloop.counter}}" href="{{ i.questions.url }}">{{ i.questions.url }}</a><br>
+        Change:
+        <input type="file" class="form-control" name="new-file-{{forloop.counter}}" class="form-control" id="id_teacher_img">
+    </p>
+    {% endfor %}
+
+    {% for j in texts_questions %}
+    <input type="hidden" name="counterText" value="{{forloop.counter}}">
+
+    <p>
+        <input type="text" class="form-control" name="new-txt-{{forloop.counter}}" value="{{ j.questions_txt}}">
+    </p>
+
+    {% endfor %}
+<!--    <button class="btn btn-danger remove-form-row"-->
+<!--            style="height:40px; width:40px;margin-top:0px; margin-left:5px"-->
+<!--            value="-" type="button">- -->
+<!--    </button>-->
+<!--    <button class="btn-success add-form-row" style="float:left; margin-top:10px;" value="+"-->
+<!--            type="button">file-->
+<!--    </button>-->
+<!--    <button class="btn-success add-txt-row" style="float:left; margin-top:10px; margin-left:5px;" type="button"-->
+<!--            value="add_txt" name="add_text">text-->
+<!--    </button>-->
+    <center>
+        <button type="submit" class="btn btn-primary">
+            submit
+        </button>
+    </center>
+</form>
+{% endblock %}

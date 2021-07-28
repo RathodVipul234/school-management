@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+
+{% block 'table' %}
+
+<form class="questions-form" method="POST" enctype="multipart/form-data" >
+    {% csrf_token %}
+    <br>
+    <p>
+        <label for="id_teacher">select Teacher</label>
+        <select id="id_teacher" name="teacher_name" class="form-control">
+            {% for i in teacher %}
+            <option>{{i}}</option>
+            {% endfor %}
+        </select>
+    </p>
+
+    <p>
+        <label for="questions_id">questions_id</label>
+        <input type="number" id="questions_id" name="question_id" class="form-control">
+    </p>
+
+    {{ form.management_form }}
+    {% for i in form1 %}
+    <div class="form-row">
+        {{i.as_p}}
+           <button class="btn btn-danger remove-form-row"
+            style="height:40px; width:40px;margin-top:0px; margin-left:5px"
+            value="-" type="button">-
+            </button>
+    </div>
+    {% endfor %}
+
+    {{ form_txt.management_form }}
+    {% for j in form_txt %}
+    <div class="form-row-txt">
+        {{ j }}
+        <button class="btn btn-danger remove-form-text"
+            style="height:40px; width:40px;margin-top:0px; margin-left:5px"
+            value="-" type="button">-
+        </button><br><br>
+    </div>
+
+    {% endfor %}
+
+    <!--    <a class="btn btn-secondary btn-sm" id="add_more"><i class="fas fa-plus-circle"></i> Add</a>-->
+    <button class="btn-success add-form-row" style="float:left; margin-top:10px;" value="+"
+            type="button">file
+    </button>
+    <button  class="btn-success add-txt-row" style="float:left; margin-top:10px; margin-left:5px;" type="button" value="add_txt" name="add_text" >text</button>
+    <center>
+        <button type="submit"  class="btn btn-primary">
+            submit
+        </button>
+    </center>
+</form>
+{% endblock %}

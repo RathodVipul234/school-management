@@ -1,3 +1,5 @@
+import os.path
+
 from django.db import models
 
 
@@ -37,3 +39,13 @@ class TeacherDetail(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Test(models.Model):
+    questions_id = models.IntegerField()
+    teacher = models.ForeignKey(TeacherDetail, on_delete=models.CASCADE)
+    questions = models.FileField(upload_to='test/', )
+    questions_txt = models.CharField(max_length=500, blank=True)
+
+    def __str__(self):
+        return str(self.questions_id)

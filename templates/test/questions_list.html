@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block 'table' %}
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th scope="col">index</th>
+        <th>questions id</th>
+        <th>update</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for i in data %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ i.questions_id }}</td>
+        <td>
+            <a href="{% url 'update_questions' i.questions_id %}">
+                <i class='fas fa-edit' style='font-size:24px'></i>
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

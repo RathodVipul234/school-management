@@ -2,12 +2,14 @@
 {% load static %}
 <html>
 <head>
-    <title>Base</title>
+    <title>School</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
     <link rel="stylesheet" href='{% static "css/style.css" %}'>
+    <!--    <script type="text/javascript" src='{% static "js/formset.js" %}'>  </script>-->
+
 </head>
 <body>
 
@@ -15,13 +17,13 @@
 <div class="wrapper">
     <nav id="sidebar">
         <div class="sidebar-header">
-            <h5><b><i>School Management</i></b></h5>
+            <h6><b><i><a href="{% url 'home' %}"> School Management</a></i></b></h6>
         </div>
         <ul class="lisst-unstyled components">
             <li>
-                <a href="#accountmenu"  data-toggle="collapse" aria-hidden="false" class="dropdown-toggle">
+                <a href="#accountmenu" data-toggle="collapse" aria-hidden="false" class="dropdown-toggle">
                     {% if user.is_authenticated %}
-                        {{ user.username }}
+                    {{ user.username }}
                     {% else %}
                     Account
                     {% endif %}
@@ -54,6 +56,7 @@
                     <li>
                         <a href="{% url 'student_registration' %}">Student registration</a>
                     </li>
+
                 </ul>
             </li>
             <li>
@@ -65,6 +68,13 @@
 
                     <li>
                         <a href="{% url 'teacher_registration' %}">Teacher registration</a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'test' %}">create test</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'test_questions' %}">questions</a>
                     </li>
                 </ul>
             </li>
@@ -98,7 +108,7 @@
                 </button>
                 <strong>
                     {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-                        {% else %}
+                    {% else %}
                     {{ title }}
                     {% endif %}
                 </strong>
@@ -125,30 +135,8 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 
-<script>
-
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-            });
-        });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</script>
-
+<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>-->
+<script type="text/javascript" src="{% static 'js/formset.js' %}"></script>
 
 </body>
 </html>
