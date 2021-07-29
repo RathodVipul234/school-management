@@ -31,11 +31,13 @@ class signupForm(forms.ModelForm):
             'placeholder': "email"
         })
 
+        self.fields['password'].widget.input_type = "password"
         self.fields['password'].widget.attrs.update({
             'class': 'form-control',
             'placeholder': "password"
         })
 
+        self.fields['retype_password'].widget.input_type = "password"
         self.fields['retype_password'].widget.attrs.update({
             'class': 'form-control',
             'placeholder': "retype_password"
@@ -75,6 +77,7 @@ class signinForm(forms.ModelForm):
             'placeholder': 'email or username'
         })
 
+        self.fields['password'].widget.input_type = "password"
         self.fields['password'].widget.attrs.update({
             'class': 'form-control',
             'placeholder': "password"

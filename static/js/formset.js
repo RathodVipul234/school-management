@@ -100,7 +100,7 @@ function cloneMoreTxt(selector, prefix) {
 
 $(document).on('click', '.add-txt-row', function (e) {
           e.preventDefault();
-          cloneMoreTxt('.form-row-txt:last', 'form1');
+          cloneMoreTxt('.form-row-txt:last', 'form');
           return false;
 });
 
@@ -135,6 +135,3 @@ $(document).on('click', '.remove-form-text', function (e) {
               return false;
 });
 
-$(document).ready(function(){
-    
-})

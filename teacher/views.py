@@ -74,7 +74,8 @@ def create_test(request):
         teacher_name = request.POST['teacher_name']
         teacher_instance = TeacherDetail.objects.get(name=teacher_name)
         question_id = request.POST['question_id']
-        if len(form1.cleaned_data) or len(form_txt.cleaned_data) == 0:
+        import pdb;pdb.set_trace()
+        if (len(form1.cleaned_data) or len(form_txt.cleaned_data)) == 0:
             messages.error(request, "minimum 1 files and 1 text field required")
             return redirect('test')
 

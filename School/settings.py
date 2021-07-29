@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+from django.contrib.messages import constants as messages
 
 from pathlib import Path
 
@@ -138,3 +139,6 @@ AUTH_USER_MODEL = 'account.Admin'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTHENTICATION_BACKENDS = ['account.views.CustomBackend']
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+}
